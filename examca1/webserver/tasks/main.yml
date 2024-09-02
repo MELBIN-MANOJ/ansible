@@ -1,0 +1,20 @@
+---
+- name: Install httpd package
+  yum:
+    name: "{{ httpd_package }}"
+    state: present
+
+- name: Deploy httpd configuration file
+  template:
+    src: httpd.conf.j2
+    dest: "{{ httpd_conf_file }}"
+  notify: Restart httpd
+
+- name: Ensure httpd is running
+  service:
+    name: "{{ httpd_service }}"
+    state: started
+    enabled: yes
+
+
+

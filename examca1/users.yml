@@ -1,0 +1,30 @@
+---
+- name: Create users and install httpd
+  hosts: all
+  vars:
+    users:
+      - user1
+      - user2
+      - user3
+      - user4
+      - user5
+    httpd_package: httpd
+
+
+  tasks:
+    - name: Ensure users are present
+      user:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ users }}"
+
+    - name: Install httpd package
+      yum:
+        name: "{{ httpd_package }}"
+        state: present
+
+    - name: Ensure httpd service is running and enabled
+      service:
+        name: "{{ httpd_package }}"
+        state: started
+        enabled: yes

@@ -1,0 +1,6 @@
+[webservers]
+server[a:b]
+
+[group1]
+servera
+serverb

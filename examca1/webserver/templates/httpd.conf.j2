@@ -1,0 +1,8 @@
+ServerAdmin {{ apache_server_admin }}
+Listen {{ apache_listen_port }}
+DocumentRoot "{{ ansible_env.HOME }}/public_html"
+<Directory "{{ ansible_env.HOME }}/public_html">
+    AllowOverride All
+    Require all granted
+</Directory>
+
